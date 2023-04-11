@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="de-DE">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Echtzeit</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <p id="datumAnzeige"></p>
+
+    <script>
+        
+    let wochentag = [
+    "Sonntag",
+    "Montag",
+    "Dienstag",
+    "Mittwoch",
+    "Donnerstag",
+    "Freitag",
+    "Samstag"
+];
+        
+let monat = [
+    "Januar",
+    "Februar",
+    "März",
+    "April",
+    "Mai",
+    "Juni",
+    "Juli",
+    "August",
+    "September",
+    "Oktober",
+    "November",
+    "Dezember"
+];
+ 
+let datum, sekunde, minute, stunde, ausgabe;
+        
+function showDate(){
+     datum = new Date();
+     sekunde = datum.getSeconds();      
+     minute = datum.getMinutes();
+     stunde = (datum.getHours());
+
+    ausgabe = wochentag[datum.getDay()]+" ";
+    ausgabe += datum.getDay()+" . ";
+    ausgabe += monat[datum.getMonth()] + " " ;
+    ausgabe += datum.getFullYear()+"<br>";
+    ausgabe += zweiStellig(stunde)+":"+zweiStellig(minute)+":"+zweiStellig(sekunde);
+
+    document.getElementById("datumAnzeige").innerHTML = ausgabe;
+}
+setInterval(showDate, 1000); 
+        
+function zweiStellig(zahl){
+    let wert = String(zahl);
+    if(wert.length == 1){
+        wert = "0"+wert;
+    }
+    return wert;    
+}
+        
+
+    </script>
+</body>
+</html>
